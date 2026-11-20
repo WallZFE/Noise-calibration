@@ -16,10 +16,10 @@ $$
 \mu_y = K(\mu_e + \mu_d)
 \quad \text{or} \quad
 \mu_y = \mu_{y\cdot\mathrm{dark}} + K\mu_e
-\tag{1}
+\qquad\text{(1)}
 $$
 
-而平均光子数 $\mu_p=\frac{AEt_{\mathrm{exp}}}{h\nu}=\frac{AEt_{\mathrm{exp}}}{hc/\lambda}$，其中 $A$ 为传感器面积，$E$ 是传感器表面在曝光时间 $t_{\mathrm{exp}}$ 内的光照度，单位为 $\mathrm{W}/\mathrm{m}^2$，而平均电子数 $\mu_e=\eta \mu_p$，因此上述方程(1)可以转换为以下方程：
+而平均光子数 $\mu_p=\frac{AEt_{\mathrm{exp}}}{h\nu}=\frac{AEt_{\mathrm{exp}}}{hc/\lambda}$，其中 $A$ 为传感器面积， $E$ 是传感器表面在曝光时间 $t_{\mathrm{exp}}$ 内的光照度，单位为 $\mathrm{W}/\mathrm{m}^2$，而平均电子数 $\mu_e=\eta \mu_p$，因此上述方程(1)可以转换为以下方程：
 
 $$
 \begin{aligned}
@@ -27,25 +27,24 @@ $$
 &= \mu_{y\cdot\mathrm{dark}} + K\eta\mu_p \\
 &= \mu_{y\cdot\mathrm{dark}} + K\eta\frac{\lambda A}{hc}Et_{\mathrm{exp}}
 \end{aligned}
-\tag{2}
+\qquad\text{(2)}
 $$
 
 ### 噪声模型
 
-散粒噪声（Shot noise）是**泊松分布**的，因此有 $\sigma_e^2 = \mu_e$；根据上图噪声生成模型所示，所有与传感器读出和放大电路相关的噪声源都可以用一个方差为 $\sigma_d^2$ 的与信号无关的**正态分布**噪声源来描述。最终的模数转换会在量化区间之间添加另一个**均匀分布**的噪声源，其方差为 $\sigma_q^2 = \frac{1}{12}\,\mathrm{DN}^2$。由于所有噪声源的方差线性相加，根据误差的传播规则，数字信号 $y$ 的总时域方差(temporal variance) $\sigma_y^2$ 可以表示为：
+散粒噪声（Shot noise）是**泊松分布**的，因此有 $\sigma_e^2 = \mu_e$；根据上图噪声生成模型所示，所有与传感器读出和放大电路相关的噪声源都可以用一个方差为 $\sigma_d^2$ 的与信号无关的**正态分布**噪声源来描述。最终的模数转换会在量化区间之间添加另一个**均匀分布**的噪声源，其方差为 $\sigma_q^2 = \frac{1}{12}\thinspace\mathrm{DN}^2$。由于所有噪声源的方差线性相加，根据误差的传播规则，数字信号 $y$ 的总时域方差(temporal variance) $\sigma_y^2$ 可以表示为：
 
 $$
 \sigma_y^2 = K^2(\sigma_d^2 + \sigma_e^2) + \sigma_q^2
-\tag{3}
+\qquad\text{(3)}
 $$
 
 噪声可以与测量的平均数字信号相关联（利用公式(1)以及 $\sigma_e^2 = \mu_e$）：
 
 $$
 \sigma_y^2
-= \underbrace{K^2\sigma_d^2 + \sigma_q^2}_{\text{offset}}
-+ \underbrace{K}_{\text{slope}}(\mu_y - \mu_{y\cdot\mathrm{dark}})
-\tag{4}
+= \underbrace{K^2\sigma_d^2 + \sigma_q^2}_{\text{offset}} + \underbrace{K}_{\text{slope}}(\mu_y - \mu_{y\cdot\mathrm{dark}})
+\qquad\text{(4)}
 $$
 
 **这个方程是传感器特性表征的核心，根据噪声方差 $\sigma_y^2$ 与光诱导数字信号均值 $\mu_y - \mu_{y\cdot\mathrm{dark}}$ 之间的线性关系，可以由斜率确定整体系统增益 $K$，并从偏移量确定暗噪声方差 $\sigma_d^2$，这种方法被称为光子转移方法（Photon Transfer Method）。**
@@ -72,7 +71,7 @@ $$
 \quad k=0,1 \\
 \mu_y &= \frac{1}{2}\bigl(\mu_y[0] + \mu_y[1]\bigr)
 \end{aligned}
-\tag{5}
+\qquad\text{(5)}
 $$
 
 注意这里是在一个特定曝光时间下进行的，我们可以在多个曝光时间下重复上述步骤，这样可以得到多个图像（有些文献称为flat-field frame）均值。
@@ -87,7 +86,7 @@ $$
 \mu_{y\cdot\mathrm{dark}}
 &= \frac{1}{2}\bigl(\mu_{y\cdot\mathrm{dark}}[0] + \mu_{y\cdot\mathrm{dark}}[1]\bigr)
 \end{aligned}
-\tag{5d}
+\qquad\text{(5d)}
 $$
 
 通过上面两步，我们得到了公式(4)中的 $\mu_y$ 和 $\mu_{y\cdot\mathrm{dark}}$
@@ -110,7 +109,7 @@ $$
 \frac{1}{NM}\sum_{m=0}^{M-1}\sum_{n=0}^{N-1}
 \bigl(y[k][m][n] - \mu[0]\bigr)^2
 = \sigma_y^2 + s_y^2
-\tag{6}
+\qquad\text{(6)}
 $$
 
 由于空间非均匀性对一个传感器是固定的，所以当我们拍摄两幅图像后，就可以消去这个变量。我们用这两幅图像的方差的差，来估计单个像素时域方差，所以我们可以得到下面的公式：
@@ -123,10 +122,9 @@ $$
 &= \frac{1}{2NM}\sum_{m=0}^{M-1}\sum_{n=0}^{N-1}
 \bigl[(y[0][m][n] - \mu[0]) - (y[1][m][n] - \mu[1])\bigr]^2 \\
 &= \frac{1}{2NM}\sum_{m=0}^{M-1}\sum_{n=0}^{N-1}
-\bigl(y[0][m][n] - y[1][m][n]\bigr)^2
-- \frac{1}{2}\bigl(\mu[0] - \mu[1]\bigr)^2
+\bigl(y[0][m][n] - y[1][m][n]\bigr)^2 - \frac{1}{2}\bigl(\mu[0] - \mu[1]\bigr)^2
 \end{aligned}
-\tag{7}
+\qquad\text{(7)}
 $$
 
 当我们多次改变曝光时间时，我们将得到多个 $\sigma_y^2$ 和 $\mu_y - \mu_{y\cdot\mathrm{dark}}$，因而由公式（4）就容易得到此时的系统增益 $K$，以及总的加性噪声了 $K^2\sigma_d^2 + \sigma_q^2$。
@@ -140,7 +138,7 @@ $$
 $$
 \mathrm{SNR} = \frac{E(I)}{\sigma(I)}
 = \frac{\mu_y - \mu_{y\cdot\mathrm{dark}}}{\sigma_y}
-\tag{8}
+\qquad\text{(8)}
 $$
 
 由于我们已经得到一组像素均值和方差，后续将利用这一公式求出SNR的变化曲线图。
@@ -179,7 +177,7 @@ $$
 
 ### 系统增益的测量
 
-> 关键点：$\sigma_y^2 = \text{offset} + K(\mu_y - \mu_{y\cdot\mathrm{dark}})$
+> 关键点： $\sigma_y^2 = \text{offset} + K(\mu_y - \mu_{y\cdot\mathrm{dark}})$
 
 通过光子转移方法测出的结果如下：
 
@@ -193,7 +191,7 @@ $$
 
 拟合结果：
 
-斜率：$K = 7.58621139$  截距：840.16712447
+斜率： $K = 7.58621139$  截距：840.16712447
 
 线性范围：0~69.44%（0-70%）符合EMVA1288关于 0-70%饱和范围的标准
 
@@ -201,7 +199,7 @@ $$
 
 ### 信噪比的测量
 
-> 关键：$\mathrm{SNR} = \frac{\mu_y - \mu_{y\cdot\mathrm{dark}}}{\sigma_y}$
+> 关键： $\mathrm{SNR} = \frac{\mu_y - \mu_{y\cdot\mathrm{dark}}}{\sigma_y}$
 
 ![SNR_loglogplot](相机噪声标定/SNR_loglogplot.png)
 
@@ -238,7 +236,7 @@ $$
 $$
 \mu_d = \mu_{d\cdot 0} + \mu_{\mathrm{therm}}
 = \mu_{d\cdot 0} + \mu_{I\cdot y}t_{\mathrm{exp}}
-\tag{9}
+\qquad\text{(9)}
 $$
 
 这里第一部分是一个与曝光时间无关的部分，主要是各种电子电路引起的噪声，而 $\mu_{d\cdot 0}$ 是它的平均值。
@@ -247,13 +245,13 @@ $$
 
 2）**空域非一致性主要考虑的是行间非一致性；**
 
-3）**将读出噪声和行噪声放到系统增益之后；**关于这一点我有点疑惑，因为读出噪声和行噪声是在电子转换为电压这一阶段的，这在原论文也有提到，但是在公式中却没有体现出读出噪声和行噪声被系统增益 $K$ 放大的影响。其实更准确地来说，根据[High-level numerical simulations of noise in CCD and CMOS photosensors: review and tutorial](https://arxiv.org/abs/1412.4031)论文中的说法，$N_d$ 和 $N_t$ 是在增益放大前（这两噪声是在Electrons阶段），而 $N_s$ 是在增益放大后（在Voltage阶段），所以应该分开来讨论。不过原论文作者可能为了简化分析，就可能没分开来讨论各自的影响了。
+3）**将读出噪声和行噪声放到系统增益之后；**关于这一点我有点疑惑，因为读出噪声和行噪声是在电子转换为电压这一阶段的，这在原论文也有提到，但是在公式中却没有体现出读出噪声和行噪声被系统增益 $K$ 放大的影响。其实更准确地来说，根据[High-level numerical simulations of noise in CCD and CMOS photosensors: review and tutorial](https://arxiv.org/abs/1412.4031)论文中的说法， $N_d$ 和 $N_t$ 是在增益放大前（这两噪声是在Electrons阶段），而 $N_s$ 是在增益放大后（在Voltage阶段），所以应该分开来讨论。不过原论文作者可能为了简化分析，就可能没分开来讨论各自的影响了。
 
 总而言之，ELD的总体噪声模型可以用以下公式来表示：
 
 $$
 N = KN_p + N_{\mathrm{read}} + N_r + N_q
-\tag{10}
+\qquad\text{(10)}
 $$
 
 ### a)光子散粒噪声 $N_p$
@@ -264,9 +262,9 @@ $$
 
    这里将原论文中的公式和EMVA1288作对比以直观地展示各变量的含义：
 
-   ELD：$\operatorname{Var}(D) = K^2I + \operatorname{Var}(N_o) = K(KI) + \operatorname{Var}(N_o)$
+   ELD： $\mathrm{Var}(D) = K^2I + \mathrm{Var}(N_o) = K(KI) + \mathrm{Var}(N_o)$
 
-   EMVA1288：$\sigma_y^2 = K^2\sigma_d^2 + \sigma_q^2 + K(\mu_y - \mu_{y\cdot\mathrm{dark}})$
+   EMVA1288： $\sigma_y^2 = K^2\sigma_d^2 + \sigma_q^2 + K(\mu_y - \mu_{y\cdot\mathrm{dark}})$
 
    所以这里可以很清楚地看出 $KI = \mu_y - \mu_{y\cdot\mathrm{dark}}$
 
@@ -354,7 +352,7 @@ Bias frame(1/4000s):
 
 > 在接下去之前，论文第六页在**Estimate $\mu_c$ for color bias** 结尾处提到为了消除直流噪声对后续其他噪声参数估计的影响，先从暗场图像中减去每个颜色通道的平均值，这里我每个通道减去的值都取为2048
 
-行噪声服从均值为零的高斯分布：$N_r \sim \mathcal{N}(0, \sigma_r)$
+行噪声服从均值为零的高斯分布： $N_r \sim \mathcal{N}(0, \sigma_r)$
 
 关于参数 $\sigma_r$ 是如何估计的：首先求出暗场图像每行的均值（这里论文的意思好像不需要减去黑电平也能求出 $\sigma_r$），然后相应地就可以得到每一行的方差，最后行噪声就是由这么一组按行排列的高斯分布采样得到的信号值。关于这部分的实现原理去read_noise.py看代码实现会更清楚直观一些。
 
@@ -429,7 +427,7 @@ for i in range(h):
 
 ![ppcc_plot](相机噪声标定/ppcc_plot.png)
 
-PPCC图可以用来求分布最符合的形状参数 $\lambda$，结果如上：$\lambda = 0.164$ 表明了在Canon M50拍下的暗场图像呈短尾分布（$-1 < \lambda < 0.14$ 为长尾分布；$\lambda = 0.14$ 呈完美的正态分布；$\lambda > 0.14$ 呈短尾分布）
+PPCC图可以用来求分布最符合的形状参数 $\lambda$，结果如上： $\lambda = 0.164$ 表明了在Canon M50拍下的暗场图像呈短尾分布（ $-1 \lt \lambda \lt 0.14$ 为长尾分布； $\lambda = 0.14$ 呈完美的正态分布； $\lambda \gt 0.14$ 呈短尾分布）
 
 > 注意在用Tukey lambda分布估计数据分布时要事先画直方图看数据是否对称分布
 >
